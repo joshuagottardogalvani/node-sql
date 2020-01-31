@@ -1,0 +1,74 @@
+extends layout
+
+block content
+
+    .container
+        h2 Inserisci i dati della nuova unità
+        form(method='POST' action='/users')
+            div  
+            label(for='Unit') Unit: &nbsp
+            input(type='text', placeholder='Goblins' name='Unit')
+            br
+            br
+
+            div  
+            label(for='Cost') Cost: &nbsp
+            input(type='text', placeholder='4' name='Cost')
+            br
+            br
+
+            div 
+            label(for='Hit_Speed') Hit speed: &nbsp
+            input(type='text', placeholder='1.2 sec' name='Hit_Speed')
+            br
+            br
+
+            div  
+            label(for='Speed') Speed: &nbsp
+            input(type='text', placeholder='Low, Medium, High (1-100)' name='Speed')
+            br
+            br
+
+            div  
+            label(for='Deploy_Time') Deploy time: &nbsp
+            input(type='text', placeholder='2 sec' name='Deploy_Time')
+            br
+            br
+
+            div  
+            label(for='Range') Range: &nbsp
+            input(type='text', placeholder='5' name='Range')
+            br
+            br
+
+            div  
+            label(for='Target') Target: &nbsp
+            input(type='text', placeholder='Air, Ground, Air & Ground' name='Target')
+            br
+            br
+
+            div  
+            label(for='Count') Count: &nbsp
+            input(type='text', placeholder='x1' name='Count')
+            br
+            br
+
+            div  
+            label(for='Transport') Transport: &nbsp
+            input(type='text', placeholder='Ground, Air, Ground & Air' name='Transport')
+            br
+            br
+
+            div  
+            label(for='Type') Type: &nbsp
+            input(type='text', placeholder='Troop, Potion' name='Type')
+            br
+            br
+
+            div  
+            label(for='Rarity') Rarity: &nbsp
+            input(type='text', placeholder='Common, Rare, Epic, Legendary' name='Rarity')
+            br
+            br
+
+            button.invia(type='submit') Invia

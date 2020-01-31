@@ -1,0 +1,48 @@
+extends layout
+
+block content
+
+    h1 #{unita.Unit.toUpperCase()}
+    .container-dettagli
+        .foto
+            img(src=`/images/${unita.Unit}.png` width='300px')
+        .info
+            p.categoria Cost: &nbsp
+            p #{unita.Cost}
+            br
+
+            p.categoria Hit Speed: &nbsp
+            p #{unita.Hit_Speed}
+            br
+
+            p.categoria Speed: &nbsp
+            p #{unita.Speed}
+            br
+
+            p.categoria Deploy Time: &nbsp
+            p #{unita.Deploy_Time}
+            br
+
+            p.categoria Range: &nbsp
+            p #{unita.Range}
+            br
+
+            p.categoria Target: &nbsp
+            p #{unita.Target}
+            br
+
+            p.categoria Count: &nbsp
+            p #{unita.Count}
+            br
+
+            p.categoria Transport: &nbsp
+            p #{unita.Transport}
+            br
+
+            p.categoria Type: &nbsp
+            p #{unita.Type}
+            br
+
+            p.categoria Rarity: &nbsp
+            p #{unita.Rarity}
+            br

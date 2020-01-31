@@ -3,7 +3,7 @@ var router = express.Router();
 const sql = require('mssql');
 var createError = require('http-errors');
 const config = {
-  user: 'bellati.samuele',
+  user: 'gottardo.joshua',
   password: 'xxx123#',
   server: "213.140.22.237",
   /* database: 'School' */
@@ -38,11 +38,14 @@ router.post('/', function (req, res, next) {
     next(createError(400 , "Please provide a correct unit"));
   }
   sql.connect(config, err => {
-    let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes] (Unit, Cost, Hit_Speed, Speed) VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}','${unit.Speed}')`;
     let sqlRequest = new sql.Request();
+    let sqlInsert = `INSERT INTO dbo.[cr-unit-attributes] (Unit, Cost, Hit_Speed, Speed, Deploy_Time, Range, Target, Count, Transport, Type, Rarity) VALUES ('${unit.Unit}','${unit.Cost}','${unit.Hit_Speed}','${unit.Speed}', '${unit.Deploy_Time}', '${unit.Range}', '${unit.Target}', '${unit.Count}', '${unit.Transport}', '${unit.Type}', '${unit.Rarity}')`;
     sqlRequest.query(sqlInsert, (error, results) => {
-      if (error) throw error;
-      return res.send({ error: false, data: results, message: 'New user has been created successfully.' });
+        if (error) throw error;
+        sqlRequest.query(`SELECT * FROM [cr-unit-attributes] WHERE Unit = '${unit.Unit}'`, (err, result) => {
+            if (err) console.log(err);
+            res.render('dettagli', { unita: result.recordsets[0][0] });
+        });
     });
   })
 });
