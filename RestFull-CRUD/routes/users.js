@@ -9,30 +9,38 @@ const config = {
   /* database: 'School' */
 };
 
-router.get('/unita', function(req, res, next) {
-  sql.connect(config, err => {
-    if(err) console.log(err);
-    let sqlRequest = new sql.Request();
-    sqlRequest.query('SELECT * FROM [cr-unit-attributes]', (err, result) => {
-        if (err) console.log(err);
-        res.send(result);
+let executeQuery = function (res, query, next) {
+  sql.connect(config, function (err) {
+    if (err) {
+      console.log("Error while connecting database :- " + err);
+      res.status(500).json({success: false, message:'Error while connecting database', error:err});
+      return;
+    }
+    var request = new sql.Request();
+    request.query(query, function (err, result) {
+      if (err) {
+        console.log("Error while querying database :- " + err);
+        res.status(500).json({success: false, message:'Error while querying database', error:err});
+        sql.close();
+        return;
+      }
+      res.send(result.recordset);
+      sql.close();
     });
   });
+}
+
+router.get('/unita', function (req, res, next) {
+  let sqlQuery = "SELECT * FROM [cr-unit-attributes]";
+  executeQuery(res, sqlQuery, next);
 });
 
-router.get('/unita/:nome', function(req, res, next) {
-  sql.connect(config, err => {
-    if(err) console.log(err);
-    let sqlRequest = new sql.Request();
-    sqlRequest.query(`SELECT * FROM [cr-unit-attributes] WHERE Unit = '${req.params.nome}'`, (err, result) => {
-        if (err) console.log(err);
-        res.send(result);
-    });
-  });
+router.get('/unita/:nome', function (req, res, next) {
+  let sqlQuery = `SELECT * FROM [cr-unit-attributes] WHERE Unit = '${req.params.nome}'`;
+  executeQuery(res, sqlQuery, next);
 });
 
 router.post('/', function (req, res, next) {
-  console.log(req.body);
   let unit = req.body;
   if (!unit) {
     next(createError(400 , "Please provide a correct unit"));
