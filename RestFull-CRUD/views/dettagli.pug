@@ -2,47 +2,47 @@ extends layout
 
 block content
 
-    h1 #{unita.Unit.toUpperCase()}
+    h1 #{risultato[0].Unit.toUpperCase()}
     .container-dettagli
         .foto
-            img(src=`/images/${unita.Unit}.png` width='300px')
+            img(src=`/images/${risultato[0].Unit}.png` width='300px')
         .info
             p.categoria Cost: &nbsp
-            p #{unita.Cost}
+            p #{risultato[0].Cost}
             br
 
             p.categoria Hit Speed: &nbsp
-            p #{unita.Hit_Speed}
+            p #{risultato[0].Hit_Speed}
             br
 
             p.categoria Speed: &nbsp
-            p #{unita.Speed}
+            p #{risultato[0].Speed}
             br
 
             p.categoria Deploy Time: &nbsp
-            p #{unita.Deploy_Time}
+            p #{risultato[0].Deploy_Time}
             br
 
             p.categoria Range: &nbsp
-            p #{unita.Range}
+            p #{risultato[0].Range}
             br
 
             p.categoria Target: &nbsp
-            p #{unita.Target}
+            p #{risultato[0].Target}
             br
 
             p.categoria Count: &nbsp
-            p #{unita.Count}
+            p #{risultato[0].Count}
             br
 
             p.categoria Transport: &nbsp
-            p #{unita.Transport}
+            p #{risultato[0].Transport}
             br
 
             p.categoria Type: &nbsp
-            p #{unita.Type}
+            p #{risultato[0].Type}
             br
 
             p.categoria Rarity: &nbsp
-            p #{unita.Rarity}
+            p #{risultato[0].Rarity}
             br

@@ -52,7 +52,7 @@ router.post('/', function (req, res, next) {
         if (error) throw error;
         sqlRequest.query(`SELECT * FROM [cr-unit-attributes] WHERE Unit = '${unit.Unit}'`, (err, result) => {
             if (err) console.log(err);
-            res.render('dettagli', { unita: result.recordsets[0][0] });
+            res.render('dettagli', { risultato: result.recordset});
         });
     });
   })
